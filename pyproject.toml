@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=64", "wheel", "cython"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tea_engine"
+version = "0.1"
+description = "Terminal Game Engine"
+requires-python = ">=3.10"
+
+[project.scripts]
+demo = "demo.demo:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
