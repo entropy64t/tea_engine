@@ -46,12 +46,13 @@ class Engine:
             # collision checks
             for i in range(entity.sprite_len):
                 sp = self.space.get(entity.position.x + i + entity.position.y * self.width)
-                if len(sp) > 1:
-                    # collide! 
-                    for other_nameid in sp:
-                        if other_nameid == nameid:
-                            continue
-                        self.entities[nameid].on_collision(self.entities[other_nameid])
+                # collide! 
+                for other_nameid in sp:
+                    if other_nameid == nameid:
+                        continue
+                    self.entities[nameid].on_collision(self.entities[other_nameid])
+                    
+        input('collisions done')
                         
     def _remove_ents(self):
         for entity in self.removes:
