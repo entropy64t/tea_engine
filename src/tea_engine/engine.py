@@ -74,7 +74,7 @@ class Engine:
             
             entity.ai.update(entity, self)
             
-            self.spacemov(entity)
+            self._spacemov(entity)
             
     def _animate_ents(self):
         for entity in self.entities.values():
