@@ -67,6 +67,7 @@ class Engine:
             input()
                 
         self.removes.clear()
+        input('removes done')
         
     def _move_ents(self):
         for nameid, entity in self.entities.items():
@@ -81,6 +82,8 @@ class Engine:
         for entity in self.entities.values():
             if entity.has_animation:
                 entity.update_sprite()
+                
+        input('anims done')
             # self.log.print(f"{fish.nameid()} updates sprite!")
                 
     def _spacemov(self, entity: Entity):
