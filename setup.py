@@ -1,4 +1,4 @@
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
 
 extensions = [
@@ -18,6 +18,9 @@ extensions = [
 
 setup(
     name="tea-engine",
+    version="0.1",
+    package_dir={"": "src"},
+    packages=find_packages("src"),
     ext_modules=cythonize(
         extensions,
         compiler_directives={"language_level": "3"},
