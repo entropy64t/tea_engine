@@ -4,7 +4,8 @@ from typing import Iterable, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tea_engine import Engine, AIBase
-from tea_engine import Colour, Bounds2, Vector2
+from .cy.vector import Vector2, Bounds2
+from .graphic_things import Colour
 
 class EntityTag:
     def __init__(self, tag_name: str) -> None:
