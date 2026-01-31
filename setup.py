@@ -3,15 +3,15 @@ from Cython.Build import cythonize
 
 extensions = [
     Extension(
-        "tea_engine.vector",
+        "tea_engine.cy.vector",
         ["src/tea_engine/cy/vector.pyx"],
     ),
     Extension(
-        "tea_engine.spacegrid",
+        "tea_engine.cy.spacegrid",
         ["src/tea_engine/cy/spacegrid.pyx"],
     ),
     Extension(
-        "tea_engine.renderer_concat",
+        "tea_engine.cy.renderer_concat",
         ["src/tea_engine/cy/renderer_concat.pyx"],
     ),
 ]
