@@ -28,18 +28,20 @@ class Engine:
         self.space.add_range(start, count, 1, entity.nameid())
         self.curr_id += 1
         return entity
+    
+    def remove(self, entity: Entity):
+        self.removes.append(entity)
         
     def update(self):
-        self.animate()
+        self._animate_ents()
         
-        self.move_ents()
+        self._move_ents()
                     
-        self.collisions()
+        self._collide_ents()
         
-        self.remove()
+        self._remove_ents()
         
-        
-    def collisions(self):
+    def _collide_ents(self):
         for nameid, entity in self.entities.items():
             # collision checks
             for i in range(entity.sprite_len):
@@ -51,7 +53,7 @@ class Engine:
                             continue
                         self.entities[nameid].on_collision(self.entities[other_nameid])
                         
-    def remove(self):
+    def _remove_ents(self):
         for entity in self.removes:
             if entity not in self.entities:
                 continue
@@ -60,10 +62,12 @@ class Engine:
             start = entity.position.x + entity.position.y * self.width
             count = entity.sprite_len
             self.space.rem_range(start, count, 1, n)
+            print(f"removed {entity}")
+            input()
                 
         self.removes.clear()
         
-    def move_ents(self):
+    def _move_ents(self):
         for nameid, entity in self.entities.items():
             if entity.ai == None: 
                 continue
@@ -72,13 +76,13 @@ class Engine:
             
             self.spacemov(entity)
             
-    def animate(self):
+    def _animate_ents(self):
         for entity in self.entities.values():
             if entity.has_animation:
                 entity.update_sprite()
             # self.log.print(f"{fish.nameid()} updates sprite!")
                 
-    def spacemov(self, entity: Entity):
+    def _spacemov(self, entity: Entity):
         # Precompute commonly used values
         x = entity.position.x
         y = entity.position.y
@@ -110,10 +114,3 @@ class Engine:
         # Update entity position
         entity.position.x = x
         entity.position.y = y
-
-            
-    #def assign_animations(self, clock: Clock):
-    #    for entity in self.entities:
-    #        if isinstance(entity, Fish):
-    #            entity.animation.frame_time = clock.tick_rate
-    #            #clock += entity.animation.animate
